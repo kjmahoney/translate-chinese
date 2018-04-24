@@ -1,43 +1,76 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-
+import { translate } from './translate';
+import pinyin from 'pinyin';
 
 class TranslateBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      output: 'yes',
+      output: '',
+      pinyin: '',
+      inputLanguage: 'english',
+      outputLanguage: 'chinese',
     };
-
     this.handleTranslate = this.handleTranslate.bind(this);
+    this.switchLanguages = this.switchLanguages.bind(this);
   }
 
   handleTranslate(e) {
-    console.log(this);
     e.preventDefault();
-    const inputValue = document.getElementById('input').value;
 
+    let inputValue = document.getElementById('input').value;
+
+    let self = this;
+    translate(inputValue, this.state.inputLanguage).then((response) => {
+      return response.json().then((json) => {
+
+        let outputValue = json.text[0]
+
+        let pinyinValue =  pinyin(outputValue);
+
+        if (this.state.inputLanguage == 'chinese') {
+          pinyinValue =  pinyin(inputValue);
+        }
+
+        self.setState({
+          output: outputValue,
+          pinyin: pinyinValue,
+        })
+      });
+    });;
+  }
+
+  switchLanguages() {
     this.setState({
-      output: inputValue,
+      output: '',
+      pinyin: '',
+      inputLanguage: this.state.outputLanguage,
+      outputLanguage: this.state.inputLanguage,
     })
   }
 
   render() {
     return (
-      <div>
-      <h1>Hello, {this.props.name}</h1>
-      <form>
-        <input id='input' type="text" name="inputTranslate" placeholder="Enter Word Here"></input>
-        <p id='output'>{this.state.output}</p>
-        <input type="submit" value="Submit" onClick={this.handleTranslate}></input>
-      </form>
+      <div className="c-translate">
+        <h1 className="c-translate__hed">Translate</h1>
+        <p>From <span className="c-translate__text--language">{this.state.inputLanguage}</span> to <span className="c-translate__text--language">{this.state.outputLanguage}</span></p>
+        <form className="c-translate__form">
+          <input className="c-translate__input c-translate__form-item" id='input' type="text" name="inputTranslate" placeholder="Type your word here!"></input>
+          <input className="c-translate__btn c-translate__btn--switch c-translate__form-item" type="button" onClick={this.switchLanguages} value="Switch Language"></input>
+          <input className="c-translate__btn c-translate__btn--submit c-translate__form-item" type="submit" value="Submit" onClick={this.handleTranslate}></input>
+        </form>
+        <div className="c-translate__container">
+          <p className="c-translate__text">{this.state.outputLanguage}:<span className="c-translate__text c-translate__text--output">{this.state.output}</span></p>
+          <p className="c-translate__text">Pinyin:<span className="c-translate__text c-translate__text--output">{this.state.pinyin}</span></p>
+        </div>
       </div>
     )
   }
 }
 
 ReactDOM.render(
-  <TranslateBox name="kevin" />,
+  <TranslateBox />,
     document.getElementById('root')
 )

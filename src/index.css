@@ -1,3 +1,69 @@
-.c-header {
-  color: blue;
+.c-translate {
+  border: 1px solid black;
+  box-shadow: 5px 5px #888888;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.c-translate__form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.c-translate__form-item {
+  border-radius: 4px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.c-translate__form-item:last-child {
+  margin-bottom: 0px;
+}
+
+.c-translate__btn {
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  margin-right: 8px;
+  width: calc(50% - 16px);
+  text-transform: capitalize;
+}
+
+.c-translate__btn:last-child {
+  margin-right: 0;
+}
+
+.c-translate__text {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.c-translate__text--output {
+  font-weight: 400;
+}
+
+.c-translate__text--language {
+  text-transform: capitalize;
+}
+
+.c-translate__container {
+  font-size: 24px;
+}
+
+.c-translate__input {
+  margin-bottom: 16px;
+  text-align: center;
+  width: 100%;
+}
+
+.c-translate__input::placeholder {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
 }
