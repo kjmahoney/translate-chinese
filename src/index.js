@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { translate } from './translate';
+import { Output }  from './output';
 import pinyin from 'pinyin';
 
 class TranslateBox extends React.Component {
@@ -53,6 +54,7 @@ class TranslateBox extends React.Component {
 
   render() {
     return (
+
       <div className="c-translate">
         <h1 className="c-translate__hed">Translate</h1>
         <p>From <span className="c-translate__text--language">{this.state.inputLanguage}</span> to <span className="c-translate__text--language">{this.state.outputLanguage}</span></p>
@@ -61,10 +63,7 @@ class TranslateBox extends React.Component {
           <input className="c-translate__btn c-translate__btn--switch c-translate__form-item" type="button" onClick={this.switchLanguages} value="Switch Language"></input>
           <input className="c-translate__btn c-translate__btn--submit c-translate__form-item" type="submit" value="Submit" onClick={this.handleTranslate}></input>
         </form>
-        <div className="c-translate__container">
-          <p className="c-translate__text">{this.state.outputLanguage}:<span className="c-translate__text c-translate__text--output">{this.state.output}</span></p>
-          <p className="c-translate__text">Pinyin:<span className="c-translate__text c-translate__text--output">{this.state.pinyin}</span></p>
-        </div>
+        <Output pinyin={this.state.pinyin} output={this.state.output} outputLanguage={this.state.outputLanguage} />
       </div>
     )
   }
