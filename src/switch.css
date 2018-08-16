@@ -1,0 +1,14 @@
+.c-switch {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.c-switch__btn {
+  font-size: 24px;
+  color: gray;
+  margin-left: 16px;
+}
+
+.c-switch__btn:hover {
+  color: black;
+}
