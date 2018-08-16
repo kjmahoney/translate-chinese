@@ -4,8 +4,10 @@ import pinyin from 'pinyin';
 export const handleTranslate = (self, inputValue) => {
   translateFetch(inputValue, self.state.inputLanguage).then((response) => {
     return response.json().then((json) => {
-
-      let outputValue = json.text[0]
+      let outputValue = {};
+      if (json.text) {
+        outputValue = json.text[0]
+      }
       let pinyinValue =  pinyin(outputValue);
 
       if (self.state.inputLanguage == 'chinese') {
