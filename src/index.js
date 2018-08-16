@@ -13,6 +13,7 @@ class TranslateBox extends React.Component {
       pinyin: '',
       inputLanguage: 'english',
       outputLanguage: 'chinese',
+      timeout: 'papa johns',
     };
     this.handleTranslate = this.handleTranslate.bind(this);
     this.switchLanguages = this.switchLanguages.bind(this);
@@ -20,27 +21,31 @@ class TranslateBox extends React.Component {
 
   handleTranslate(e) {
     e.preventDefault();
+    //timeout so function doesnt fire on every key stroke
+    clearTimeout(this.timeout);
 
-    let inputValue = document.getElementById('input').value;
+    this.timeout = setTimeout( () => {
+      let inputValue = document.getElementById('input').value;
 
-    let self = this;
-    translate(inputValue, this.state.inputLanguage).then((response) => {
-      return response.json().then((json) => {
+      let self = this;
+      translate(inputValue, this.state.inputLanguage).then((response) => {
+        return response.json().then((json) => {
 
-        let outputValue = json.text[0]
+          let outputValue = json.text[0]
 
-        let pinyinValue =  pinyin(outputValue);
+          let pinyinValue =  pinyin(outputValue);
 
-        if (this.state.inputLanguage == 'chinese') {
-          pinyinValue =  pinyin(inputValue);
-        }
+          if (this.state.inputLanguage == 'chinese') {
+            pinyinValue =  pinyin(inputValue);
+          }
 
-        self.setState({
-          output: outputValue,
-          pinyin: pinyinValue,
-        })
+          self.setState({
+            output: outputValue,
+            pinyin: pinyinValue,
+          })
+        });
       });
-    });;
+    }, 1000)
   }
 
   switchLanguages() {
@@ -54,14 +59,12 @@ class TranslateBox extends React.Component {
 
   render() {
     return (
-
       <div className="c-translate">
         <h1 className="c-translate__hed">Translate</h1>
         <p>From <span className="c-translate__text--language">{this.state.inputLanguage}</span> to <span className="c-translate__text--language">{this.state.outputLanguage}</span></p>
         <form className="c-translate__form">
-          <input className="c-translate__input c-translate__form-item" id='input' type="text" name="inputTranslate" placeholder="Type your word here!"></input>
+          <input className="c-translate__input c-translate__form-item" id='input' type="text" name="inputTranslate" placeholder="Type your word here!" onChange={this.handleTranslate}></input>
           <input className="c-translate__btn c-translate__btn--switch c-translate__form-item" type="button" onClick={this.switchLanguages} value="Switch Language"></input>
-          <input className="c-translate__btn c-translate__btn--submit c-translate__form-item" type="submit" value="Submit" onClick={this.handleTranslate}></input>
         </form>
         <Output pinyin={this.state.pinyin} output={this.state.output} outputLanguage={this.state.outputLanguage} />
       </div>
