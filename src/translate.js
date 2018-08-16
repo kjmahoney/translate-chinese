@@ -1,6 +1,26 @@
 import { MY_KEY } from './config';
+import pinyin from 'pinyin';
 
-export const translate = (inputValue, inputLanguage) => {
+export const handleTranslate = (self, inputValue) => {
+  translateFetch(inputValue, self.state.inputLanguage).then((response) => {
+    return response.json().then((json) => {
+
+      let outputValue = json.text[0]
+      let pinyinValue =  pinyin(outputValue);
+
+      if (self.state.inputLanguage == 'chinese') {
+        pinyinValue =  pinyin(inputValue);
+      }
+
+      self.setState({
+        output: outputValue,
+        pinyin: pinyinValue,
+      })
+    });
+  });
+}
+
+const translateFetch = (inputValue, inputLanguage) => {
 
   let languageUrl = '&lang=en-zh';
   if (inputLanguage === 'chinese') {
