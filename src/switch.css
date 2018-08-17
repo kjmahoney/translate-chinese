@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
+  margin-bottom: 16px;
 }
 .c-switch__btn {
   font-size: 24px;

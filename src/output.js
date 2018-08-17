@@ -1,10 +1,21 @@
 import React from 'react';
 
+import { Speak }  from './speak';
+
 export const Output = (props) => {
   return(
-    <div className="c-translate__container">
-      <p className="c-translate__text">{props.outputLanguage}:<span className="c-translate__text c-translate__text--output">{props.output}</span></p>
-      <p className="c-translate__text">Pinyin:<span className="c-translate__text c-translate__text--output">{props.pinyin}</span></p>
+    <div className="c-output">
+      <div>
+        <div className="c-output__outputs">
+          <p className="o-text">{props.outputLanguage}</p>
+          <Speak output={props.output} outputLanguage={props.outputLanguage} />
+        </div>
+        <p className="c-output__text">{props.output}</p>
+      </div>
+      <div>
+        <p className="o-text">Pinyin</p>
+        <p className="c-output__text">{props.pinyin}</p>
+      </div>
     </div>
   )
 }

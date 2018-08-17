@@ -1,15 +1,15 @@
 .o-text {
   font-size: 18px;
   font-weight: 600;
+  margin: 0;
   text-transform: capitalize;
 }
-
 
 .c-translate {
   border: 1px solid black;
   box-shadow: 5px 5px #888888;
   max-width: 750px;
-  margin: 0 auto;
+  margin: 24px auto ;
   padding: 0 24px;
   text-align: center;
 }
@@ -18,6 +18,13 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-bottom: 24px;
+}
+
+.c-translate__outputs {
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
 .c-translate__form-item {
@@ -58,6 +65,22 @@
   font-size: 14px;
 }
 
+.c-output {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c-output__text {
+  font-family: serif;
+  font-size: 18px;
+}
+
+.c-output__outputs {
+  display: flex;
+  justify-content: center;
+}
+
 body {
+  font-family: sans-serif;
   margin: 0;
 }

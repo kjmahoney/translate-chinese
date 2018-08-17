@@ -10,7 +10,7 @@ export const handleTranslate = (self, inputValue) => {
       }
       let pinyinValue =  pinyin(outputValue);
 
-      if (self.state.inputLanguage == 'chinese') {
+      if (self.state.inputLanguage === 'chinese') {
         pinyinValue =  pinyin(inputValue);
       }
 

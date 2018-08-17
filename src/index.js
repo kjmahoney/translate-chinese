@@ -42,8 +42,9 @@ class TranslateBox extends React.Component {
   render() {
     return (
       <div className="c-translate">
-        <h1 className="c-translate__hed">Translate</h1>
+        <h1 className="c-translate__hed">🇺🇸 Translate 🇨🇳</h1>
         <Switch inputLanguage={this.state.inputLanguage} outputLanguage={this.state.outputLanguage} switchFunction={this.handleSwitchClick} />
+
         <form className="c-translate__form">
           <input className="c-translate__input c-translate__form-item" id='input' type="text" name="inputTranslate" placeholder="Type your word here!" onChange={this.handleInputChange}></input>
         </form>
