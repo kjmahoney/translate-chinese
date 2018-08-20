@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import './switch.css';
+
 import { handleTranslate } from './translate';
 import { Output }  from './output';
 import { Switch }  from './switch';
+
+import './css/index.css';
+import './css/translate.css';
 
 class TranslateBox extends React.Component {
   constructor(props) {

@@ -1,0 +1,14 @@
+.c-output {
+  display: flex;
+  justify-content: space-between;
+}
+
+.c-output__text {
+  font-family: serif;
+  font-size: 18px;
+}
+
+.c-output__outputs {
+  display: flex;
+  justify-content: center;
+}

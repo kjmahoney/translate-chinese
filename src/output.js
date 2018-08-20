@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Speak }  from './speak';
 
+import './css/output.css';
+
 export const Output = (props) => {
   return(
     <div className="c-output">
